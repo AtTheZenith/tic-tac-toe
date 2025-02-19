@@ -1,0 +1,9 @@
+[project]
+name = "tic-tac-toe"
+version = "1.0.1"
+description = "This is a simple Tic Tac Toe game implemented using the Urwid library in Python. The game features a start screen, a game board, and the ability to place markers on the board. The game checks for a winner or a draw after each move."
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = [
+    "urwid<3",
+]

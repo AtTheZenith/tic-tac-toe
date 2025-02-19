@@ -1,10 +1,6 @@
 from __future__ import annotations
 import typing
 import urwid
-from time import sleep
-
-if typing.TYPE_CHECKING:
-    from collections.abc import Iterable
 
 body_placeholder = urwid.WidgetPlaceholder(urwid.SolidFill(' '))
 
@@ -14,13 +10,14 @@ selected_row, selected_col = 1, 1
 game_over = True
 winner = None
 
-def clamp(value: float, min_value: float, max_value: float) -> float:
+def clamp(value: int | float, min_value: int | float, max_value: int | float) -> int | float:
     return max(min_value, min(value, max_value))
 
-def exit_program(*args, **kwargs) -> None:
+def exit_program() -> None:
     raise urwid.ExitMainLoop()
 
-def lazy_fun(*args, **kwargs):
+def lazy_fun():
+    global game_over
     game_over = False
     tic_tac_toe(None)
 
@@ -30,7 +27,7 @@ def start_screen() -> urwid.ListBox:
     maintext = urwid.Text(['Welcome to Tic Tac Toe.\n'])
     start = urwid.Button('Start')
     quit = urwid.Button('Quit')
-    urwid.connect_signal(start, 'click', lazy_fun)
+    urwid.connect_signal(start, 'click', lambda _: lazy_fun())
     urwid.connect_signal(quit, 'click', exit_program)
     body.append(urwid.Filler(urwid.Pile([
         maintext,
@@ -51,7 +48,7 @@ def render_board() -> urwid.Text:
     board_str = '\n'.join(lines)
     return urwid.Text(board_str, align='center')
 
-def check_winner() -> typing.Optional[str]:
+def check_winner() -> str | bool:
     global board
     winning_combinations = [
         [board[0][0], board[0][1], board[0][2]],
@@ -70,13 +67,13 @@ def check_winner() -> typing.Optional[str]:
     
     return False
 
-def tic_tac_toe(winner: any) -> None:
+def tic_tac_toe(winner: typing.Optional[str]) -> None:
     global xturn, game_over, selected_row, selected_col
     body = [urwid.Text('\nTic Tac Toe', align = 'center'), urwid.Divider()]
     if winner == 'X' or winner == 'O':
         body.append(urwid.Filler(urwid.Text(f"\n Player {winner} has won the game,\n Restarting in 3 seconds.\n\n\n", align = 'center'), valign = 'top'))
     elif winner == 'Draw':
-        body.append(urwid.Filler(urwid.Text(f"\n It's a draw, nobody has won the game.\n Restarting in 3 seconds.\n\n\n", align = 'center'), valign= 'top'))
+        body.append(urwid.Filler(urwid.Text("\n It's a draw, nobody has won the game.\n Restarting in 3 seconds.\n\n\n", align = 'center'), valign= 'top'))
     else:
         body.append(urwid.Filler(urwid.Text(f"\n It's player {xturn and 'X' or 'O'}'s turn.\n\n\n\n", align = 'center'), valign = 'top'))
     body.append(urwid.Filler(render_board(), valign='middle'))
@@ -105,16 +102,16 @@ def exit_on_q(key):
                 tic_tac_toe('Draw')
             else:
                 tic_tac_toe(None)
-        elif key == 'up':
+        elif key == 'up' or key.lower() == 'w':
             selected_row = clamp(selected_row - 1, 0, 2)
             tic_tac_toe(None)
-        elif key == 'down':
+        elif key == 'down' or key.lower() == 's':
             selected_row = clamp(selected_row + 1, 0, 2)
             tic_tac_toe(None)
-        elif key == 'left':
+        elif key == 'left' or key.lower() == 'a':
             selected_col = clamp(selected_col - 1, 0, 2)
             tic_tac_toe(None)
-        elif key == 'right':
+        elif key == 'right' or key.lower() == 'd':
             selected_col = clamp(selected_col + 1, 0, 2)
             tic_tac_toe(None)
 
@@ -147,5 +144,6 @@ top = urwid.Overlay(
 
 body_placeholder.original_widget = start_screen()
 
-game = urwid.MainLoop(top, palette=[('reversed', 'standout', '')], unhandled_input=exit_on_q)
-game.run()
+if __name__ == "__main__":
+    game = urwid.MainLoop(top, palette=[('reversed', 'standout', '')], unhandled_input=exit_on_q)
+    game.run()
