@@ -41,6 +41,7 @@ cd ./tic-tac-toe    # To change directories after downloading.
 
 </br>
 ## Setting up tic-tac-toe with pyvenv
+
 Run the following in your shell with the current directory being this repo.
 ```bash
 python -m venv .venv    # The last venv is what the folder should be named,
@@ -55,6 +56,7 @@ python main.py          # will run the script, preferred if your terminal
 ```
 
 ## Setting up tic-tac-toe with uv
+
 Run the following in your shell with the current directory being this repo.
 ```bash
 uv venv                 # Set up a virtual enviroment.
