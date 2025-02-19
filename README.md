@@ -17,21 +17,20 @@
 
 # Installation and usage
 
-Install any modern python version. (3.7+)
-Install git. (Optional)
+- Install any modern python version. (3.7+)
+- Install git. (Optional)
 
 ### Without git
 
-Download the source code.
+- Download the source code.
+
 ![Tutorial Screenshot 1](https://i-dont-use.arch-linux.xyz/-->/zv2pzqpq.png)
-
-Extract it and navigate to the folder.
-
-Open command prompt in it.
+- Extract it and navigate to the folder.
+- Open command prompt in it.
 
 ### With git
 
-Open command prompt and navigate to your downloads folder.
+- Open command prompt and navigate to your downloads folder.
 
 ```bash
 git clone https://github.com/AtTheZenith/tic-tac-toe/ # To download the repo.
@@ -43,7 +42,7 @@ cd ./tic-tac-toe    # To change directories after downloading.
 
 ## Setting up tic-tac-toe with pyvenv
 
-Run the following in your shell with the current directory being this repo.
+- Run the following in your shell with the current directory being this repo.
 ```bash
 python -m venv .venv    # The last venv is what the folder should be named,
                         # It can be .venv, or venv, or anything else.
@@ -58,7 +57,7 @@ python main.py          # will run the script, preferred if your terminal
 
 ## Setting up tic-tac-toe with uv
 
-Run the following in your shell with the current directory being this repo.
+- Run the following in your shell with the current directory being this repo.
 ```bash
 uv venv                 # Set up a virtual enviroment.
 
