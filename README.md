@@ -20,7 +20,7 @@
 Install any modern python version. (3.7+)
 Install git. (Optional)
 
-## Without git
+### Without git
 
 Download the source code.
 ![Tutorial Screenshot 1](https://i-dont-use.arch-linux.xyz/-->/zv2pzqpq.png)
@@ -29,7 +29,7 @@ Extract it and navigate to the folder.
 
 Open command prompt in it.
 
-## With git
+### With git
 
 Open command prompt and navigate to your downloads folder.
 
@@ -40,6 +40,7 @@ cd ./tic-tac-toe    # To change directories after downloading.
 ```
 
 </br>
+
 ## Setting up tic-tac-toe with pyvenv
 
 Run the following in your shell with the current directory being this repo.
