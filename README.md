@@ -64,6 +64,6 @@ uv venv                 # Set up a virtual enviroment.
 .venv/Scripts/activate  # Enter the virtual enviroment.
 
 uv run main.py          # Check dependencies and run main.py
-                          uv will auto-manage packages
-                          and the python version.
+                        # uv will auto-manage packages
+                        # and the python version.
 ```
